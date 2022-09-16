@@ -13,13 +13,6 @@ class DatabaseManager {
     await db.execute(_cartoes);
 
     await db.insert('categorias', {
-      'categoriaDescricao': 'teste',
-      'categoriaCor': 'pink',
-      'categoriaIcone': 'restaurant',
-      'categoriaTipoTransacao': 0
-    });
-
-    await db.insert('categorias', {
       'categoriaDescricao': 'Alimentação',
       'categoriaCor': 'pink',
       'categoriaIcone': 'restaurant',
