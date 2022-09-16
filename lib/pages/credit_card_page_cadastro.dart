@@ -18,6 +18,17 @@ class _CartaoPageState extends State<CartaoPage> {
       decimalSeparator: ',', thousandSeparator: '.', leftSymbol: 'R\$');
 
   final _bandeiraController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+
+    final cartaoCreditoEdit = widget.cartaoCredito;
+    if (cartaoCreditoEdit != null) {
+      _bandeiraController.text = cartaoCreditoEdit.nome;
+      _limiteController.text = NumberFormat.simpleCurrency(locale: 'pt_BR')
+          .format(cartaoCreditoEdit.limite);
+    }
+  }
 
   final _formKey = GlobalKey<FormState>();
   @override
@@ -68,11 +79,18 @@ class _CartaoPageState extends State<CartaoPage> {
             );
 
             try {
-              await _cartaoRepository.cadastrarCartao(cartao);
-
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('Cartao cadastrado com sucesso'),
-              ));
+              if (widget.cartaoCredito != null) {
+                cartao.id = widget.cartaoCredito!.id;
+                await _cartaoRepository.editarCartao(cartao);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Cartao Alterado com sucesso'),
+                ));
+              } else {
+                await _cartaoRepository.cadastrarCartao(cartao);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Cartao cadastrado com sucesso'),
+                ));
+              }
 
               Navigator.of(context).pop(true);
             } catch (e) {

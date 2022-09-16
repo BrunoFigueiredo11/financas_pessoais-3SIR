@@ -35,4 +35,17 @@ class CartoesRepository {
     final db = await DatabaseManager().getDatabase();
     await db.delete('card', where: 'id = ?', whereArgs: [id]);
   }
+
+  Future<int> editarCartao(CardCredit cartao) async {
+    final db = await DatabaseManager().getDatabase();
+    return db.update(
+        'card',
+        {
+          "id": cartao.id,
+          "nome": cartao.nome,
+          "limite": cartao.limite,
+        },
+        where: 'id = ?',
+        whereArgs: [cartao.id]);
+  }
 }
