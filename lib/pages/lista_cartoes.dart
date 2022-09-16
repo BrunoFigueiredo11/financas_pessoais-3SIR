@@ -1,6 +1,7 @@
 import 'package:financas_pessoais/components/categoria_list_item.dart';
 import 'package:financas_pessoais/components/list_credit_card.dart';
 import 'package:financas_pessoais/models/credit_card.dart';
+import 'package:financas_pessoais/pages/credit_card_page_cadastro.dart';
 import 'package:financas_pessoais/repository/categoria_repository.dart';
 import 'package:financas_pessoais/repository/credit_card_repository.dart';
 import 'package:flutter/material.dart';
@@ -69,6 +70,27 @@ class _ListaCartoes extends State<ListaCartoes> {
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
                           label: 'Remover',
+                        ),
+                        SlidableAction(
+                          onPressed: (context) async {
+                            var success = await Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => CartaoPage(
+                                  cartaoCredito: cartao,
+                                ),
+                              ),
+                            ) as bool?;
+
+                            if (success != null && success) {
+                              setState(() {
+                                carregarCartoes();
+                              });
+                            }
+                          },
+                          backgroundColor: Colors.blue,
+                          foregroundColor: Colors.white,
+                          icon: Icons.edit,
+                          label: 'Editar',
                         ),
                       ],
                     ),
