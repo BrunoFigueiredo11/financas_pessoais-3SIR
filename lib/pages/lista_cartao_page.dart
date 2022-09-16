@@ -1,13 +1,9 @@
-import 'package:financas_pessoais/components/categoria_list_item.dart';
 import 'package:financas_pessoais/components/list_credit_card.dart';
 import 'package:financas_pessoais/models/credit_card.dart';
 import 'package:financas_pessoais/pages/credit_card_page_cadastro.dart';
-import 'package:financas_pessoais/repository/categoria_repository.dart';
 import 'package:financas_pessoais/repository/credit_card_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
-import '../models/categorial.dart';
 
 class ListaCartoes extends StatefulWidget {
   ListaCartoes({Key? key}) : super(key: key);

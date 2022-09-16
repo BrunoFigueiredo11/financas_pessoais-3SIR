@@ -1,6 +1,6 @@
 import 'package:financas_pessoais/pages/categorias_lista_page.dart';
 import 'package:financas_pessoais/pages/dashboard_page.dart';
-import 'package:financas_pessoais/pages/lista_cartoes.dart';
+import 'package:financas_pessoais/pages/lista_cartao_page.dart';
 import 'package:financas_pessoais/pages/transacoes_lista_page.dart';
 import 'package:flutter/material.dart';
 
